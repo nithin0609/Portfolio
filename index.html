@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nithin Manyamvollu - Data Scientist & Analyst</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #f8f9fa;
+            --primary-color: #2563eb;
+            --accent-color: #f59e0b;
+            --border-color: #e5e7eb;
+            --header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #e5e5e5;
+            --card-bg: #2d2d2d;
+            --primary-color: #60a5fa;
+            --accent-color: #fbbf24;
+            --border-color: #404040;
+            --header-bg: linear-gradient(135deg, #4c1d95 0%, #581c87 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .banner {
+            background: var(--header-bg);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .toggle-container {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .desktop-note {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-bottom: 2px solid #fbbf24;
+        }
+
+        [data-theme="dark"] .desktop-note {
+            background: #451a03;
+            color: #fef3c7;
+        }
+
+        .testimonial-slider {
+            background: var(--card-bg);
+            padding: 1.5rem 0;
+            overflow: hidden;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 45s linear infinite;
+        }
+
+        .testimonial-item {
+            flex: 0 0 500px;
+            padding: 1.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            font-style: italic;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .testimonial-item strong {
+            display: block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            font-style: normal;
+            font-size: 0.95rem;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .section-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .section-header:hover {
+            opacity: 0.9;
+        }
+
+        .section-content {
+            padding: 2rem;
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .arrow.rotated {
+            transform: rotate(180deg);
+        }
+
+        .timeline-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+
+        .card {
+            background: rgba(0,0,0,0.03);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        [data-theme="dark"] .card {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            margin: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .download-item {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .download-item:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="toggle-container">
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">🌙</span> Toggle Theme
+            </button>
+        </div>
+        <h1>Nithin Manyamvollu</h1>
+        <p>Data Analyst | Business Intelligence Analyst | Problem Solver</p>
+    </div>
+
+    <div class="desktop-note">
+        💡 Best viewed on desktop for the full experience!
+    </div>
+
+    <div class="testimonial-slider">
+        <div class="testimonial-track">
+            <div class="testimonial-item">
+                "Nithin has been a great person I have met. He always has the curiosity to talk about data and reports. Mentoring him and sharing knowledge has been always fun."
+                <strong>— Kapil Chawla, Senior Data Analyst</strong>
+            </div>
+            <div class="testimonial-item">
+                "Nithin is a smart, reliable and motivated data analyst who is always keen to learn new technical skills. He is very easy to work with and his positive attitude is second to none. I would recommend Nithin to anyone looking for a bright young talent to bring into their team."
+                <strong>— Stefan Korn, CEO at EconSearch</strong>
+            </div>
+            <div class="testimonial-item">
+                "Nithin brings an exceptionally strong work ethic coupled with a genuine enthusiasm for data analysis and problem-solving. His ability to quickly grasp complex concepts and deliver high-quality insights makes him a valuable asset to any team."
+                <strong>— Jordon Pratt, Manager at AEDA</strong>
+            </div>
+            <div class="testimonial-item">
+                "Nithin has been a great person I have met. He always has the curiosity to talk about data and reports. Mentoring him and sharing knowledge has been always fun."
+                <strong>— Kapil Chawla, Senior Data Analyst</strong>
+            </div>
+            <div class="testimonial-item">
+                "Nithin is a smart, reliable and motivated data analyst who is always keen to learn new technical skills. He is very easy to work with and his positive attitude is second to none. I would recommend Nithin to anyone looking for a bright young talent to bring into their team."
+                <strong>— Stefan Korn, CEO at EconSearch</strong>
+            </div>
+            <div class="testimonial-item">
+                "Nithin brings an exceptionally strong work ethic coupled with a genuine enthusiasm for data analysis and problem-solving. His ability to quickly grasp complex concepts and deliver high-quality insights makes him a valuable asset to any team."
+                <strong>— Jordon Pratt, Manager at AEDA</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>My Journey</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="timeline-item">
+                    <h3>Born in Bangalore - The Tech Capital</h3>
+                    <p>Started my life in India's Silicon Valley, where innovation is in the air. Growing up surrounded by technology probably sparked my interest in data and analytics without me even realizing it.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Age 16 - Off to Mangalore</h3>
+                    <p>Moved to Mangalore for high school and pre-university. This was my first experience living away from home, learning independence, and discovering coastal Karnataka's amazing food scene (those Mangalorean buns though!).</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Back to Bangalore - University Years</h3>
+                    <p>Returned to Bangalore for my bachelor's degree. But here's where life got interesting - at just 18, I started supporting my dad's construction business. While other students were just studying, I was managing projects, handling teams, dealing with vendors, and learning what it really means to run a business.</p>
+                    <p><strong>What I learned from construction:</strong> Project management, team dynamics, budget handling, client relationships, and how to stay calm when everything seems to be going wrong (which happens a lot in construction!).</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>The Big Move - Hello Australia!</h3>
+                    <p>After years in construction and business, I realized I wanted to upskill, meet new people, explore different cultures, and honestly - live that abroad dream we all have. So I packed my bags and headed to Adelaide.</p>
+                    <p>Australia has been an adventure. From figuring out public transport to understanding Aussie slang (still not sure what "yeah nah" really means), it's been a journey of constant learning and growth.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Master of Data Science - University of Adelaide</h3>
+                    <p>Now pursuing my Master's in Data Science, combining my business experience with cutting-edge analytics. The goal? To be someone who doesn't just crunch numbers, but tells stories with data and drives real business impact.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>What Makes Me Different</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Here's what I bring to the table that you won't find in everyone's portfolio:</p>
+                
+                <div class="card">
+                    <h4>Real Business Experience Before Academia</h4>
+                    <p>Most data scientists go straight from university to analytics roles. I've actually run a business. I know what keeps business owners up at night, what drives decisions, and how to translate technical insights into business value. When I analyze data, I'm not just looking at trends - I'm thinking about profit margins, operational efficiency, and stakeholder concerns.</p>
+                </div>
+
+                <div class="card">
+                    <h4>The "Figure It Out" Mindset</h4>
+                    <p>Managing construction projects taught me to solve problems with whatever resources I have. Don't have the right tool? Find another way. Data missing? Let's get creative. Deadline impossible? Watch me. This scrappy, determined approach means I don't just say "that's not possible" - I find solutions.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Cultural Bridge Builder</h4>
+                    <p>Born in India, educated across multiple cities, now living in Australia - I understand diverse perspectives. This helps me work with global teams, understand different market contexts, and communicate insights to stakeholders from various backgrounds. Plus, I can explain cricket to Aussies and Aussie football to Indians!</p>
+                </div>
+
+                <div class="card">
+                    <h4>Hands-On, End-to-End Thinker</h4>
+                    <p>From managing vendors to delivering projects, I understand the full lifecycle. In data terms, this means I don't just build a model - I think about data collection, cleaning, analysis, visualization, deployment, and how end-users will actually interact with it. I've been on both sides of the table.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Genuinely Curious & Always Learning</h4>
+                    <p>Whether it's a new certification, a challenging dataset, or just an interesting problem - I'm in. Currently pursuing Fabric and SAP Data Analyst certifications because standing still is boring. My LinkedIn conversations are full of discussions about data, trends, and "hey, have you tried this approach?"</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>Education & Certifications</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>Academic Background</h3>
+                <div class="card">
+                    <h4>Master of Data Science</h4>
+                    <p><strong>University of Adelaide</strong> | Completed July 2025</p>
+                    <p>Deep diving into machine learning, statistical modeling, big data technologies, and advanced analytics. Focusing on real-world applications and industry-relevant skills.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Bachelor's Degree</h4>
+                    <p><strong>Bangalore, India</strong></p>
+                    <p>Built my foundational knowledge while simultaneously managing real-world business operations.</p>
+                </div>
+
+                <h3>Professional Certifications</h3>
+                
+                <div style="margin-top: 1rem;">
+                    <h4 style="color: var(--accent-color);">Completed</h4>
+                    <div class="skill-tag">DP-900: Microsoft Azure Data Fundamentals</div>
+                    <div class="skill-tag">AWS Certified Data Engineer - Associate</div>
+                    <div class="skill-tag">Microsoft Azure Data Fundamentals</div>
+                    <div class="skill-tag">Power BI</div>
+                    <div class="skill-tag">Python for Data Analysis</div>
+                    <div class="skill-tag">SQL Database Management</div>
+                    <div class="skill-tag">Statistical Analysis</div>
+                </div>
+
+                <div style="margin-top: 1.5rem;">
+                    <h4 style="color: var(--accent-color);">In Progress (2025)</h4>
+                    <div class="skill-tag">Microsoft Fabric</div>
+                    <div class="skill-tag">SAP Data Analyst</div>
+                </div>
+
+                <p style="margin-top: 1.5rem; font-style: italic;">Because staying current in data science means always being a student.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>Skills & Expertise</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <h3>Technical Skills</h3>
+                <div style="margin-bottom: 2rem;">
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">R</div>
+                    <div class="skill-tag">SQL</div>
+                    <div class="skill-tag">Power BI</div>
+                    <div class="skill-tag">Tableau</div>
+                    <div class="skill-tag">Excel</div>
+                    <div class="skill-tag">Machine Learning</div>
+                    <div class="skill-tag">Statistical Analysis</div>
+                    <div class="skill-tag">Data Visualization</div>
+                    <div class="skill-tag">ETL Processes</div>
+                    <div class="skill-tag">Database Management</div>
+                    <div class="skill-tag">LaTeX</div>
+                </div>
+
+                <h3>Business & Soft Skills</h3>
+                <div style="margin-bottom: 2rem;">
+                    <div class="skill-tag">Project Management</div>
+                    <div class="skill-tag">Team Leadership</div>
+                    <div class="skill-tag">Vendor Management</div>
+                    <div class="skill-tag">Client Relations</div>
+                    <div class="skill-tag">Budget Management</div>
+                    <div class="skill-tag">Problem Solving</div>
+                    <div class="skill-tag">Strategic Thinking</div>
+                    <div class="skill-tag">Communication</div>
+                </div>
+
+                <h3>Domain Knowledge</h3>
+                <div>
+                    <div class="skill-tag">Business Intelligence</div>
+                    <div class="skill-tag">Economic Analysis</div>
+                    <div class="skill-tag">Construction Management</div>
+                    <div class="skill-tag">Data Strategy</div>
+                    <div class="skill-tag">Predictive Analytics</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>Featured Work & Projects</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="card" style="border-left: 4px solid var(--primary-color);">
+                    <h3>City Activity Levels Dashboard</h3>
+                    <p><strong>Business Intelligence Analyst</strong> | AEDA (Adelaide Economic Development Agency)</p>
+                    <p style="margin: 1rem 0;">An interactive Power BI dashboard that provides real-time insights into Adelaide's city activity patterns, investment opportunities, and economic indicators. This tool helps businesses and policymakers make data-driven decisions about Adelaide's economic development.</p>
+                    <a href="https://www.aedasa.com.au/business/investing-in-adelaide/data-insights-new/data-insights-new-investment-insights/city-activity-levels/" target="_blank" class="btn">View Live Dashboard</a>
+                </div>
+
+                <h3>Research Publications</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Hybrid Optical & RF Model Research</h4>
+                        <p>Advanced research project combining optical and radio frequency technologies for improved data transmission and communication systems.</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent-color);"><strong>Status:</strong> Completed & Documented</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Data Science Research Projects</h4>
+                        <p>Multiple research initiatives exploring machine learning applications, statistical modeling, and predictive analytics in real-world scenarios.</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent-color);"><strong>Status:</strong> Ongoing</p>
+                    </div>
+                </div>
+
+                <h3>Key Achievements</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Construction Business Operations</h4>
+                        <p>• Managed multiple concurrent projects worth significant value</p>
+                        <p>• Led teams of 10+ workers and coordinated with multiple vendors</p>
+                        <p>• Handled budgets, timelines, and client relationships</p>
+                        <p>• Developed problem-solving skills in high-pressure environments</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Data Analytics Impact</h4>
+                        <p>• Built interactive dashboards serving thousands of users</p>
+                        <p>• Developed data pipelines for economic analysis</p>
+                        <p>• Provided actionable insights for business stakeholders</p>
+                        <p>• Contributed to data-driven policy recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>Beyond Work - What I'm About</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">Work is great, but here's what makes life interesting:</p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>In the Kitchen</h4>
+                        <p>I love cooking! My specialties are pizzas (yes, homemade dough and all), pasta with various sauces, and of course, authentic Indian food that reminds me of home. There's something therapeutic about cooking - it's like data science, but you can eat the results.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>On the Road</h4>
+                        <p>Adelaide has amazing drives, and I'm always out exploring. Whether it's a coastal drive, heading to the hills, or just a long drive to clear my head - I love being behind the wheel. It's my moving meditation.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>On the Field</h4>
+                        <p><strong>Cricket:</strong> I'm a batsman - there's nothing quite like timing that perfect cover drive. Also play badminton to stay active and competitive. Sports taught me teamwork, strategy, and how to handle pressure.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Staying Connected</h4>
+                        <p>Being away from family is tough, but FaceTime and constant calls help bridge the distance. I miss my family and friends in India, especially during festivals like Ganesha Chaturthi - though I still celebrate it here in Adelaide!</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 1.5rem; border-left: 4px solid var(--accent-color);">
+                    <h4>Why This Matters</h4>
+                    <p>These interests aren't just hobbies - they shape how I work. Cooking teaches patience and process. Driving teaches focus and anticipation. Sports teach teamwork and resilience. Staying connected reminds me why clear communication matters. All of this makes me better at solving problems and working with diverse teams.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>Download My Documents</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="margin-bottom: 1.5rem;">Want the full details? Grab any of these documents:</p>
+
+                <div class="download-item">
+                    <div>
+                        <strong>Professional CV</strong>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">Complete resume with work experience, education, and skills</p>
+                    </div>
+                    <a href="#" class="btn" onclick="alert('CV download - File: CV_Nithin_Manyamvollu.pdf'); return false;">Download PDF</a>
+                </div>
+
+                <div class="download-item">
+                    <div>
+                        <strong>Master's Degree Certificate</strong>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">University of Adelaide - Master of Data Science</p>
+                    </div>
+                    <a href="#" class="btn" onclick="alert('Degree download - File: Degree of Master of Data Science.pdf'); return false;">Download PDF</a>
+                </div>
+
+                <div class="download-item">
+                    <div>
+                        <strong>Research Project Proposal</strong>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">Initial research proposal and methodology</p>
+                    </div>
+                    <a href="#" class="btn" onclick="alert('Proposal download - File: Research project A- Project Proposal (2).pdf'); return false;">Download PDF</a>
+                </div>
+
+                <div class="download-item">
+                    <div>
+                        <strong>Research Project Report</strong>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">Complete findings and analysis</p>
+                    </div>
+                    <a href="#" class="btn" onclick="alert('Report download - File: research Project report A.pdf'); return false;">Download PDF</a>
+                </div>
+
+                <div class="download-item">
+                    <div>
+                        <strong>AEDA Work Portfolio</strong>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">Details about my Business Intelligence work at AEDA</p>
+                    </div>
+                    <a href="#" class="btn" onclick="alert('Portfolio download - File: Work at AEDA.pdf'); return false;">Download PDF</a>
+                </div>
+
+                <div class="download-item">
+                    <div>
+                        <strong>Hybrid Optical & RF Model - Final Research Paper</strong>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">Complete LaTeX formatted research publication</p>
+                    </div>
+                    <a href="#" class="btn" onclick="alert('Research paper download - File: LaTeX_Nithin_Research Project (Final) - Hybrid Optical & RF model.pdf'); return false;">Download PDF</a>
+                </div>
+
+                <p style="margin-top: 1.5rem; font-style: italic; color: #666;">All documents are in PDF format for easy viewing and sharing.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>Let's Connect</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Want to collaborate, discuss data, or just chat? I'm always up for interesting conversations!</p>
+                
+                <div style="text-align: center;">
+                    <a href="https://www.linkedin.com/in/nithindata/" target="_blank" class="btn">LinkedIn Profile</a>
+                    <a href="mailto:nithinmanyamvollu@gmail.com" class="btn">Email Me</a>
+                    <a href="https://www.aedasa.com.au/business/investing-in-adelaide/data-insights-new/data-insights-new-investment-insights/city-activity-levels/" target="_blank" class="btn">View My AEDA Work</a>
+                </div>
+
+                <p style="margin-top: 2rem; text-align: center; color: #666; font-style: italic;">
+                    "Data tells stories. Business creates impact. I bridge both worlds."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('.arrow');
+            
+            content.classList.toggle('active');
+            arrow.classList.toggle('rotated');
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>
